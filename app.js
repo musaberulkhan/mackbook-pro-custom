@@ -43,7 +43,12 @@ document.getElementById('delivery-fast').addEventListener('click',
         updateField(deliveryChargeDisplay, "20");
     });
 
-
+//Promo Code Add Button
+document.getElementById('promo-code-add-btn').addEventListener('click',
+    function () {
+        checkPromoCode();  
+        updateTotal();      
+    });
 
 
 //**************************************************************
@@ -51,12 +56,35 @@ document.getElementById('delivery-fast').addEventListener('click',
 function updateField(fieldId, updateValue) {
     fieldId.innerText = updateValue;
     calculateTotalPrice();
+    updateTotal();
 }
 
 function calculateTotalPrice() {
-    const basePriceAmount = parseFloat(basePriceDisplay.innerHTML);
-    const extraMemoryCostAmount = parseFloat(extraMemoryCostDisplay.innerHTML);
-    const extraStorageCostAmount = parseFloat(extraStorageCostDisplay.innerHTML);
-    const deliveryChargeAmount = parseFloat(deliveryChargeDisplay.innerHTML);
-    totalPriceDisplay.innerHTML = basePriceAmount + extraMemoryCostAmount + extraStorageCostAmount + deliveryChargeAmount;
+    const basePriceAmount = parseFloat(basePriceDisplay.innerText);
+    const extraMemoryCostAmount = parseFloat(extraMemoryCostDisplay.innerText);
+    const extraStorageCostAmount = parseFloat(extraStorageCostDisplay.innerText);
+    const deliveryChargeAmount = parseFloat(deliveryChargeDisplay.innerText);
+    totalPriceDisplay.innerText = basePriceAmount + extraMemoryCostAmount + extraStorageCostAmount + deliveryChargeAmount;
 }
+
+function updateTotal(){
+    const totalDisplayField = document.getElementById('total-display');
+    const totalPriceAmount = parseFloat(totalPriceDisplay.innerText);
+    if(checkPromoCode()==true){
+        totalDisplayField.innerText = totalPriceAmount - totalPriceAmount*0.2;
+    }
+    else{
+        totalDisplayField.innerText = totalPriceAmount ;
+    }
+    
+}
+
+function checkPromoCode(){
+    const promoCodeInputField = document.getElementById('promo-code-input');
+    const promoCodeValue = promoCodeInputField.value;
+    if(promoCodeValue == "stevekaku"){
+        promoCodeInputField.setAttribute("disabled", true);
+        return true;
+    }
+}
+
