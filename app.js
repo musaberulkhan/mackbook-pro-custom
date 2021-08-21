@@ -53,12 +53,15 @@ document.getElementById('promo-code-add-btn').addEventListener('click',
 
 //**************************************************************
 //Add Fuctions
+
+//Update Field in Table
 function updateField(fieldId, updateValue) {
-    fieldId.innerText = updateValue;
+    fieldId.innerText = updateValue;    
     calculateTotalPrice();
     updateTotal();
 }
 
+//Calculate Total Price Field in Table
 function calculateTotalPrice() {
     const basePriceAmount = parseFloat(basePriceDisplay.innerText);
     const extraMemoryCostAmount = parseFloat(extraMemoryCostDisplay.innerText);
@@ -67,6 +70,7 @@ function calculateTotalPrice() {
     totalPriceDisplay.innerText = basePriceAmount + extraMemoryCostAmount + extraStorageCostAmount + deliveryChargeAmount;
 }
 
+//Update Total Field and Check Promo
 function updateTotal(){
     const totalDisplayField = document.getElementById('total-display');
     const totalPriceAmount = parseFloat(totalPriceDisplay.innerText);
@@ -74,17 +78,20 @@ function updateTotal(){
         totalDisplayField.innerText = totalPriceAmount - totalPriceAmount*0.2;
     }
     else{
-        totalDisplayField.innerText = totalPriceAmount ;
-    }
-    
+        totalDisplayField.innerText = totalPriceAmount;
+    }    
 }
 
+//Check Promo Code Applied or Not 
 function checkPromoCode(){
     const promoCodeInputField = document.getElementById('promo-code-input');
     const promoCodeValue = promoCodeInputField.value;
     if(promoCodeValue == "stevekaku"){
         promoCodeInputField.setAttribute("disabled", true);
         return true;
+    }
+    else{
+        return false;
     }
 }
 

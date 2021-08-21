@@ -41,16 +41,12 @@ body{
 }
 
 /* --------------------------     Promo Code    --------------------------------- */
-
 .promo-code p{
     color: #272727;
     font-weight: 600;
 }
 .promo-code input{
     width: 200px;  
-}
-.promo-code div{
-    display: flex;
 }
 
 /* --------------------------     Total Price    --------------------------------- */
